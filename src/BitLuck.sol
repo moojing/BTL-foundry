@@ -133,6 +133,16 @@ contract BitLuck is Context, IERC20, Ownable {
     // Addresses
     address payable private immutable _taxWallet = payable(_msgSender());
     address public immutable RouterAddress;
+
+    /**
+     * @dev USD1 代幣地址
+     *
+     * 設計說明：
+     * - 此地址存儲用於支付分紅的穩定幣合約地址
+     * - 設計上預期使用 World Coin 的 USD1 代幣
+     * - 在測試環境中可能使用 USDT 等其他穩定幣作為代理
+     * - 通過構造函數設置，支持不同網絡部署的靈活性
+     */
     address public immutable _USD1;
 
     // Uniswap Integration

@@ -71,8 +71,10 @@ function getReferralInfo(address user) external view returns (
 ## Configuration
 
 ### Network Parameters
-- **BSC Testnet Router**: `0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3`
-- **Test USDT**: Deployed via MockUSDT contract
+- **BSC Testnet RPC**: `https://bsc-testnet.public.blastapi.io` (Free endpoint)
+- **BSC Testnet Router**: `0xD99D1c33F9fC3444f8101754aBC46c52416550D1` (Official PancakeSwap V2)
+- **USD1 Token (Testing)**: `0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684` 
+  > **重要說明**: USD1 採用可升級代理模式，具有 freeze/pause 等管理功能。在測試環境中，我們使用 USDT 作為代理來測試 BitLuck 的核心 ERC20 交互功能。BitLuck 僅使用標準 ERC20 接口，因此不受 USD1 升級機制影響。主網部署時將使用真實的 USD1 Proxy 合約地址。
 - **Minimum Holding**: 0.1% of total supply for lottery eligibility
 - **Draw Interval**: 1200 blocks (~30 minutes)
 
@@ -99,6 +101,10 @@ cd BitLuck
 
 # Install dependencies
 forge install
+
+# Setup environment variables
+cp env.example .env
+# Edit .env with your actual values
 
 # Compile contracts
 forge build
@@ -130,20 +136,24 @@ forge test --gas-report
 
 ### BSC Testnet Deployment
 ```bash
-# Set environment variables
-export PRIVATE_KEY=<your-private-key>
-export BSC_API_KEY=<bscscan-api-key>
+# Ensure environment variables are set (see env.example)
+# export PRIVATE_KEY=<your-private-key>
 
 # Deploy with mock USDT (testing)
 forge script script/Deploy.s.sol:DeployScript --rpc-url bsc_testnet --broadcast
 
-# Deploy with real USDT (production)
+# Deploy with real USDT (production)  
 forge script script/Deploy.s.sol:DeployScript --sig "deployWithRealUSDT()" --rpc-url bsc_testnet --broadcast
+
+# Run fork tests using free RPC
+forge test --match-contract BitLuckV2ForkTest --fork-url https://bsc-testnet.public.blastapi.io
 ```
 
-### Verification
+### Contract Verification
 ```bash
-forge verify-contract <contract-address> src/BitLuck.sol:BitLuck --chain bsc-testnet
+# Note: Manual verification on BSC Testnet Explorer
+# Visit https://testnet.bscscan.com/ and use the manual verification option
+# (API key verification disabled to avoid paid services)
 ```
 
 ## Security Features

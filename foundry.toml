@@ -8,9 +8,10 @@ remappings = [
 
 # BSC Testnet configuration
 [rpc_endpoints]
-bsc_testnet = "https://bsc-testnet.drpc.org"
+bsc_testnet = "https://bsc-testnet.public.blastapi.io"
 
-[etherscan]
-bsc_testnet = { key = "${BSC_API_KEY}", url = "https://api-testnet.bscscan.com/api" }
+# Note: Etherscan verification disabled to avoid API key requirement
+# [etherscan]
+# bsc_testnet = { key = "${BSC_API_KEY}", url = "https://api-testnet.bscscan.com/api" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
