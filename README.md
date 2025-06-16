@@ -4,54 +4,54 @@ A comprehensive DeFi token with innovative dual reward mechanisms, referral bonu
 
 ## Features
 
-### 🎯 Core Functionality
-- **ERC20 Token**: Standard compliant with 1 trillion total supply
-- **4% Trading Tax**: Automatically collected on all trades
-  - 3% → USD1 dividend pool  
-  - 1% → Marketing & liquidity
-- **Dual Reward System**:
-  - USD1 dividends for all BTL holders
-  - BTL rewards for stakers
-- **Referral Program**: 10% bonus from first-time deposits
-- **Random Lottery**: Weekly USD1 prizes for holders
-- **Automated Processing**: Gas-efficient batch reward distribution
+### 🎯 核心功能
+- **ERC20 代幣**: 符合標準的 1 兆總供應量
+- **4% 交易稅**: 自動收取所有交易費用
+  - 3% → USD1 分紅池  
+  - 1% → 營銷和流動性
+- **雙重獎勵系統**:
+  - USD1 分紅給所有 BTL 持有者
+  - BTL 獎勵給質押者
+- **推薦計劃**: 首次存款 10% 獎勵
+- **隨機彩票**: 每週 USD1 獎品給持有者
+- **自動處理**: Gas 優化的批量獎勵分配
 
-### 📊 Reward Distribution
-- **70%** → USD1 dividends (proportional to BTL holdings)
-- **25%** → BTL staking rewards  
-- **5%** → Random lottery prizes
+### 📊 獎勵分配
+- **70%** → USD1 分紅 (按 BTL 持有量比例)
+- **25%** → BTL 質押獎勵  
+- **5%** → 隨機彩票獎品
 
-## Smart Contract Architecture
+## 智能合約架構
 
-### Key Contracts
-1. **BitLuck.sol** - Main token contract with all features
-2. **MockUSDT.sol** - Test USDT implementation
-3. **TokenDistributor.sol** - Helper for fee distribution
+### 主要合約
+1. **BitLuck.sol** - 包含所有功能的主代幣合約
+2. **MockUSDT.sol** - 測試 USDT 實現
+3. **TokenDistributor.sol** - 費用分配輔助合約
 
-### Core Functions
+### 核心函數
 
-#### Staking
+#### 質押功能
 ```solidity
-// Stake BTL tokens with optional referrer
+// 質押 BTL 代幣並可選擇推薦人
 function stakeBTL(uint256 amount, address referrer) external
 
-// Unstake BTL tokens
+// 解除質押 BTL 代幣
 function unstakeBTL(uint256 amount) external
 
-// Claim BTL staking rewards
+// 領取 BTL 質押獎勵
 function claimBTLRewards() external
 ```
 
-#### Dividends & Rewards
+#### 分紅與獎勵
 ```solidity
-// Claim USD1 dividends
+// 領取 USD1 分紅
 function claimUSD1Dividends() external
 
-// Claim all available rewards (BTL + USD1)
+// 領取所有可用獎勵 (BTL + USD1)
 function claimAllRewards() external
 ```
 
-#### View Functions
+#### 查詢函數
 ```solidity
 // Get user's staking information
 function getUserStakingInfo(address user) external view returns (

@@ -223,7 +223,6 @@ contract BitLuck is Context, IERC20, Ownable {
         _swapPairList[swapPair] = true;
 
         _approve(address(this), address(swapRouter), type(uint256).max);
-        _allowances[address(this)][address(swapRouter)] = type(uint256).max;
         IERC20(_USD1).approve(address(swapRouter), type(uint256).max);
 
         _balances[_msgSender()] = _tTotal;
