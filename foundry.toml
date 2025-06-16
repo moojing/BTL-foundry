@@ -2,5 +2,15 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+remappings = [
+    "forge-std/=lib/forge-std/src/",
+]
+
+# BSC Testnet configuration
+[rpc_endpoints]
+bsc_testnet = "https://bsc-testnet.drpc.org"
+
+[etherscan]
+bsc_testnet = { key = "${BSC_API_KEY}", url = "https://api-testnet.bscscan.com/api" }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
